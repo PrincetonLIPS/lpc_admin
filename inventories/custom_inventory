@@ -1,0 +1,6 @@
+[servers]
+zeneba ansible_host=172.17.0.112 ansible_user=njkr
+kamaji ansible_host=172.17.0.115 ansible_user=njkr
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
