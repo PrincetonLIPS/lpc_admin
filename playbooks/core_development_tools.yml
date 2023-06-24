@@ -5,9 +5,18 @@
   become: true
 
   tasks: 
+  - name: update repository index 
+    ansible.builtin.apt: 
+      update_cache: yes 
+
   - name: ensure gcc is at the latest version 
     ansible.builtin.apt: 
       name: gcc 
+      state: latest 
+
+  - name: ensure git is at the latest version 
+    ansible.builtin.apt: 
+      name: git 
       state: latest 
 
 - name: confirm servers ssh is active 
