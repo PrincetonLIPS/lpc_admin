@@ -1,0 +1,5 @@
+---
+gpg_key_url: https://download.docker.com/linux/ubuntu/gpg
+gpg_target: /usr/share/keyrings/docker.asc
+repository_url: https://download.docker.com/linux/ubuntu
+

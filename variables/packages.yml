@@ -1,0 +1,14 @@
+---
+core_development_tools: 
+  - apt-transport-https
+  - ca-certificates
+  - curl 
+  - gcc 
+  - git 
+  - python3-pip
+  - python3-setuptools
+  - software-properties-common
+  - tmux 
+  - virtualenv
+  - wget 
+  - zsh 

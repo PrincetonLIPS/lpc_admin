@@ -1,0 +1,21 @@
+---
+- name: Manage container engine and runtime 
+  hosts: servers
+  become: true 
+  vars_files: 
+    - ../variables/docker.yml
+    
+  tasks: 
+    - name: Add Docker GPG key
+      ansible.builtin.get_url:
+        url: "{{ gpg_key_url }}"
+        dest: "{{ gpg_target }}"
+    - name: 
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by={{ gpg_target }}] {{ repository_url }} {{ ansible_distribution_release }} stable"
+        state: present
+    - name: Update apt cache and install Docker
+      ansible.builtin.apt:
+        name: docker-ce
+        update_cache: yes
+        state: present
