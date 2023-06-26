@@ -22,6 +22,12 @@
         backup: yes 
       notify: 
       - restart nfs 
+    - name: Configure firewall 
+      community.general.ufw: 
+        rule: allow 
+        src: "{{ item }}" 
+        port: '{{ nfs_port }}'
+      loop: "{{ nfs_client_ips }}"
 
   handlers: 
     - name: restart nfs
