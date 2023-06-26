@@ -1,0 +1,11 @@
+---
+- name: Manages core system services. 
+  hosts: servers 
+  remote_user: root
+  become: true
+
+  tasks: 
+  - name: ensure ssh is active 
+    ansible.builtin.service: 
+      name: ssh 
+      state: started 

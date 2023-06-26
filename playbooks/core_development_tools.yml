@@ -8,25 +8,9 @@
     - ../variables/packages.yml
 
   tasks: 
-  - name: update repository index 
-    ansible.builtin.apt: 
-      update_cache: yes 
-
   - name: ensure tools are at latest version 
     package: 
       name: "{{ item }}"
       state: present
-      update_cache: true
+      update_cache: yes
     loop: "{{ core_development_tools }}"
-
-
-#- name: confirm servers ssh is active 
-#  hosts: servers 
-#  remote_user: root 
-#
-#  tasks: 
-#  - name: ensure ssh is active 
-#    ansible.builtin.service: 
-#      name: ssh 
-#      state: started 
-
