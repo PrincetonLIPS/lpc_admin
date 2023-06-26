@@ -3,3 +3,4 @@
 - import_playbook: playbooks/containerization.yml 
 - import_playbook: playbooks/core_development_tools.yml 
 - import_playbook: playbooks/system_services.yml 
+- import_playbook: playbooks/nfs_server.yml 

@@ -1,0 +1,30 @@
+--- 
+- name: Configuration and management for network file system (NFS)
+  hosts: nfs_server
+  become: true 
+  vars_files: 
+    - ../variables/identity.yml
+    - ../variables/nfs.yml
+
+  tasks: 
+    - name: Update apt cache and install nfs-kernel-server
+      ansible.builtin.apt:
+        name: nfs-kernel-server
+        update_cache: yes
+        state: present
+    - name: Template out server configuration 
+      ansible.builtin.template:
+        src: ../templates/nfs_server_exports.j2
+        dest: /etc/exports
+        owner: root 
+        group: root 
+        mode: '0644'
+        backup: yes 
+      notify: 
+      - restart nfs 
+
+  handlers: 
+    - name: restart nfs
+      ansible.builtin.service: 
+        name: nfs-kernel-server 
+        state: restarted 
