@@ -1,0 +1,7 @@
+---
+motd_dependencies: 
+    - ansiweather 
+    - inxi 
+    - screenfetch 
+lpc_documentation_url: https://shorturl.at/boP57
+lpc_tickets_url: https://shorturl.at/hlozW

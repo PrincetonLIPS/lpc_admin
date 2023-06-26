@@ -1,0 +1,16 @@
+#! /bin/sh 
+
+echo "Welcome to LIPS Private Compute (LPC)!\n" 
+HOST_PRETTY_NAME=$(grep -ioP '^PRETTY_NAME=\K.+' /etc/os-release | tr -d '"')
+echo "Host: ${HOST_PRETTY_NAME} ($(uname -o) $(uname -r) $(uname -p))\n"
+echo "General System Information"
+/usr/bin/screenfetch
+echo 
+echo "Weather information: "
+ansiweather -l princeton -u metric -s true -a false
+ansiweather -l princeton -u metric -f 5 -s true -a false
+echo 
+echo "LPC Help:" 
+echo "\t* Documentation: {{ lpc_documentation_url }}" 
+echo "\t* Support: {{ lpc_tickets_url }}"
+echo 

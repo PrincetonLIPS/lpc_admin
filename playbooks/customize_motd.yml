@@ -1,0 +1,30 @@
+---
+- name: Customize message of the day 
+  hosts: servers 
+  become: true 
+  vars_files: 
+    - ../variables/auxilliary.yml
+
+  tasks: 
+  - name: install motd dependencies
+    package: 
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    loop: "{{ motd_dependencies }}"
+  - name: disable standard motd
+    ansible.builtin.file: 
+      path: /etc/update-motd.d
+      owner: root 
+      group: root 
+      mode: '0644'
+      state: directory 
+      recurse: yes
+  - name: copy custom motd to host 
+    ansible.builtin.template: 
+      src: ../templates/motd.j2
+      dest: /etc/update-motd.d/01-custom-motd
+      owner: root
+      group: root
+      mode: '0755'
+      backup: yes 
