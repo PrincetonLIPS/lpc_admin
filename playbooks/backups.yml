@@ -4,6 +4,7 @@
   become: true 
   vars_files: 
     - ../variables/backups.yml
+    - ../variables/identity.yml
 
   tasks: 
     - name: Install rsnapshot
@@ -15,8 +16,8 @@
       ansible.builtin.template: 
         src: ../templates/rsnapshot.j2
         dest: /etc/rsnapshot.conf
-        owner: njkr
-        group: njkr 
+        owner: "{{ admin }}"
+        group: "{{ admin }}"
         mode: '0644'
         backup: yes 
     - name: copy rsnapshot cron configuration to hosts 

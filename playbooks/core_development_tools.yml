@@ -1,7 +1,7 @@
 ---
 - name: update servers core development tools 
   hosts: servers 
-  remote_user: "{{ user }}"
+  remote_user: "{{ admin }}"
   become: true
   vars_files: 
     - ../variables/identity.yml

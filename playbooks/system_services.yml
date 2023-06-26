@@ -1,8 +1,10 @@
 ---
 - name: Manages core system services. 
   hosts: servers 
-  remote_user: root
+  remote_user: "{{ admin }}"
   become: true
+  vars_files: 
+    - ../variables/identity.yml
 
   tasks: 
   - name: ensure ssh is active 
