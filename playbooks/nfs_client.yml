@@ -1,0 +1,27 @@
+--- 
+- name: Configuration and management for network file system (NFS) clients
+  hosts: nfs_clients
+  become: true 
+  vars_files: 
+    - ../variables/nfs.yml
+
+  tasks: 
+    - name: Update apt cache and install nfs-common
+      ansible.builtin.apt:
+        name: nfs-common
+        update_cache: yes
+        state: present
+    - name: Create mount points 
+      ansible.builtin.file: 
+        path: "{{ nfs_mount_path }}"
+        owner: root
+        group: root
+        mode: '0755'
+    - name: Mount remote 
+      ansible.posix.mount: 
+        src: "{{ nfs_server_ip }}:/home"
+        path: "{{ nfs_mount_path }}" 
+        opts: rw,sync,hard 
+        state: mounted 
+        fstype: nfs 
+        boot: true 
