@@ -1,31 +1,32 @@
 ---
 - name: update servers core development tools 
   hosts: servers 
-  remote_user: root 
+  remote_user: "{{ user }}"
   become: true
+  vars_files: 
+    - ../variables/identity.yml
+    - ../variables/packages.yml
 
   tasks: 
   - name: update repository index 
     ansible.builtin.apt: 
       update_cache: yes 
 
-  - name: ensure gcc is at the latest version 
-    ansible.builtin.apt: 
-      name: gcc 
-      state: latest 
+  - name: ensure tools are at latest version 
+    package: 
+      name: "{{ item }}"
+      state: present
+      update_cache: true
+    loop: "{{ core_development_tools }}"
 
-  - name: ensure git is at the latest version 
-    ansible.builtin.apt: 
-      name: git 
-      state: latest 
 
-- name: confirm servers ssh is active 
-  hosts: servers 
-  remote_user: root 
-
-  tasks: 
-  - name: ensure ssh is active 
-    ansible.builtin.service: 
-      name: ssh 
-      state: started 
+#- name: confirm servers ssh is active 
+#  hosts: servers 
+#  remote_user: root 
+#
+#  tasks: 
+#  - name: ensure ssh is active 
+#    ansible.builtin.service: 
+#      name: ssh 
+#      state: started 
 

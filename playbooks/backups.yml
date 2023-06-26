@@ -1,0 +1,26 @@
+---
+- name: Configure snapshots and backups 
+  hosts: servers
+  become: true 
+  tasks: 
+    - name: Install rsnapshot
+      ansible.builtin.apt:
+        name: rsnapshot
+        update_cache: yes
+        state: present
+    - name: copy rsnapshot configuration to hosts 
+      ansible.builtin.copy: 
+        src: ../files/rsnapshot.conf
+        dest: /etc/rsnapshot.conf
+        owner: njkr
+        group: njkr 
+        mode: '0644'
+        backup: yes 
+    - name: copy rsnapshot cron configuration to hosts 
+      ansible.builtin.copy: 
+        src: ../files/rsnapshot_cron.conf
+        dest: /etc/cron.d/rsnapshot
+        owner: root
+        group: root  
+        mode: '0644'
+        backup: yes 
