@@ -2,6 +2,9 @@
 - name: Configure snapshots and backups 
   hosts: servers
   become: true 
+  vars_files: 
+    - ../variables/backups.yml
+
   tasks: 
     - name: Install rsnapshot
       ansible.builtin.apt:
@@ -9,16 +12,16 @@
         update_cache: yes
         state: present
     - name: copy rsnapshot configuration to hosts 
-      ansible.builtin.copy: 
-        src: ../files/rsnapshot.conf
+      ansible.builtin.template: 
+        src: ../templates/rsnapshot.j2
         dest: /etc/rsnapshot.conf
         owner: njkr
         group: njkr 
         mode: '0644'
         backup: yes 
     - name: copy rsnapshot cron configuration to hosts 
-      ansible.builtin.copy: 
-        src: ../files/rsnapshot_cron.conf
+      ansible.builtin.template: 
+        src: ../templates/rsnapshot_cron.j2
         dest: /etc/cron.d/rsnapshot
         owner: root
         group: root  

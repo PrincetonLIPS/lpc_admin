@@ -1,0 +1,5 @@
+# Cron task configuration for rsnapshot 
+# Author: njkrichardson@princeton.edu 
+
+ {{ weekly_backup_minute }}  {{ weekly_backup_hour }} * * {{ weekly_backup_day }}		root	/usr/bin/rsnapshot weekly 
+ {{ monthly_backup_minute }}  {{ monthly_backup_hour }} {{ monthly_backup_day }} * *		root	/usr/bin/rsnapshot monthly

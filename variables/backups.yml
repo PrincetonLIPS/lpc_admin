@@ -1,0 +1,15 @@
+---
+# rsnapshot.conf
+num_weekly_backups: 4
+num_monthly_backups: 4 
+
+# cron configuration 
+weekly_backup_day: 1    # (0 -6) with Sunday=0
+weekly_backup_hour: 3   # 24-hr mode (3=3am) 
+weekly_backup_minute: 0 
+
+monthly_backup_day: 1    # Day of month (1-31) 
+monthly_backup_hour: 2   # 24-hr mode (2=2am) 
+monthly_backup_minute: 0 
+
+
