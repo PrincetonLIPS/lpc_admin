@@ -1,0 +1,16 @@
+--- 
+client_dependencies: 
+    - sssd-ldap 
+    - ldapscripts 
+    - ldap-utils 
+    - libnss-ldap
+    - libpam-ldapd
+
+# SSSD configuration 
+ldap_version: 3 
+ldap_config_version: 2 
+ldap_domain: zeneba.lpc.edu
+ldap_provider_ip: 172.17.0.112
+enable_tls: true
+cache_credentials: true
+ldap_port: 389

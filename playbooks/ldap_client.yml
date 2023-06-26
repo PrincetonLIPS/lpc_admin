@@ -1,0 +1,65 @@
+---
+- name: Manage ldap client configuration 
+  hosts: ldap_clients
+  become: true 
+  vars_files: 
+    - ../variables/ldap.yml
+    
+  tasks: 
+  - name: ensure tools are at latest version 
+    package: 
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    loop: "{{ client_dependencies }}"
+
+  - name: template sssd configuration 
+    ansible.builtin.template: 
+        src: ../templates/sssd.j2
+        dest: /etc/sssd/sssd.conf
+        owner: root 
+        group: root
+        mode: '0600'
+        backup: yes 
+    notify: 
+      - restart sssd
+
+  - name: template pam-common configuration 
+    ansible.builtin.template: 
+        src: ../templates/pam_common_session.j2
+        dest: /etc/pam.d/common-session
+        owner: root 
+        group: root 
+        mode: '0644'
+        backup: yes 
+
+  - name: template ldap configuration 
+    ansible.builtin.template: 
+        src: ../templates/ldap.j2
+        dest: /etc/ldap.conf
+        owner: root 
+        group: root 
+        mode: '0644'
+        backup: yes 
+
+  - name: template nslcd configuration 
+    ansible.builtin.template: 
+        src: ../templates/nslcd.j2
+        dest: /etc/nslcd.conf
+        owner: root 
+        group: root
+        mode: '0640'
+        backup: yes 
+    notify: 
+      - restart nslcd
+    
+  handlers: 
+    - name: restart sssd
+      ansible.builtin.service: 
+        name: sssd
+        state: restarted 
+
+    - name: restart nslcd
+      ansible.builtin.service: 
+        name: nslcd
+        state: restarted 

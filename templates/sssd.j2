@@ -1,0 +1,11 @@
+[sssd] 
+config_file_version = {{ ldap_config_version }} 
+domains = {{ ldap_domain }} 
+ldap_id_use_start_tls = {{ enable_tls }} 
+
+[domain/{{ ldap_domain }}]
+id_provider = ldap 
+auth_provider = ldap 
+ldap_uri = ldap://{{ ldap_domain }} 
+cache_credentials = True 
+ldap_search_base = dc=zeneba,dc=lpc,dc=edu

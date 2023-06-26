@@ -1,0 +1,20 @@
+###DEBCONF###
+# This is the configuration file for the LDAP nameservice
+# switch library and the LDAP PAM module.
+# Author: njkrichardson@princeton.edu
+
+# distinguished name of the search base.
+base dc=zeneba,dc=lpc,dc=edu
+uri ldap://{{ ldap_provider_ip }} 
+ldap_version {{ ldap_version }} 
+port {{ ldap_port }} 
+
+# The distinguished name to bind to the server with
+# if the effective user ID is root. Password is
+# stored in /etc/ldap.secret (mode 600)
+rootbinddn cn=admin,dc=zeneba,dc=lpc,dc=edu
+
+# Do not hash the password at all; presume
+# the directory server will do it, if
+# necessary. This is the default.
+pam_password md5
