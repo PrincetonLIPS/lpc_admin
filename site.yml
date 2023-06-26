@@ -5,3 +5,4 @@
 - import_playbook: playbooks/system_services.yml 
 - import_playbook: playbooks/nfs_server.yml 
 - import_playbook: playbooks/nfs_client.yml 
+- import_playbook: playbooks/ldap_client.yml 
