@@ -1,0 +1,29 @@
+---
+- name: Configures administration tools. 
+  become: true 
+  hosts: servers 
+  remote_user: "{{ admin }}" 
+  vars_files: 
+    - ../variables/identity.yml
+    - ../variables/administration.yml
+
+  tasks: 
+  - name: ensure administration tools are present
+    package: 
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    loop: "{{ admin_tools }}"
+  - name: configure cockpit 
+    package: 
+      name: cockpit 
+      state: present 
+      update_cache: yes 
+    notify: 
+        - restart cockpit 
+
+  handlers: 
+    - name: restart cockpit
+      ansible.builtin.service: 
+        name: cockpit.socket 
+        state: restarted 
