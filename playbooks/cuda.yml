@@ -1,0 +1,30 @@
+---
+- name: Nvidia GPU and CUDA Configuration 
+  hosts: servers
+  become: true 
+  user: "{{ admin }}" 
+  vars_files: 
+    - ../variables/identity.yml
+    - ../variables/cuda.yml
+
+  tasks: 
+    - name: Install kernel headers 
+      ansible.builtin.apt: 
+        name: "linux-headers-{{ ansible_kernel }}"
+    - name: Transfer GPG key 
+      ansible.builtin.copy:
+        src: ../files/cuda-archive-keyring.gpg
+        dest: "{{ gpg_key_path }}"
+        owner: root 
+        group: root 
+        mode: '0644'
+        backup: true 
+    - name: Adds cuda repository 
+      ansible.builtin.apt_repository: 
+        repo: "deb [signed-by={{ gpg_key_path}}] {{ repository_url }} /"
+        filename: "cuda-ubuntu2204-x86_64"
+    - name: Install cuda
+      ansible.builtin.apt:
+        name: "cuda={{ latest_toolkit }}"
+        update_cache: yes
+        state: present

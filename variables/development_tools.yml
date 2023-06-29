@@ -1,12 +1,18 @@
 ---
 core_development_tools: 
   - apt-transport-https
+  - bat 
+  - build-essential
   - ca-certificates
   - curl 
+  - duf 
   - gcc 
   - git 
+  - manpages-dev 
+  - neovim 
   - python3-pip
   - python3-setuptools
+  - rsync 
   - software-properties-common
   - tmux 
   - virtualenv

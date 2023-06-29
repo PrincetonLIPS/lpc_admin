@@ -1,10 +1,11 @@
 ---
-- import_playbook: playbooks/administration_tools.yml 
+- import_playbook: playbooks/development_tools.yml 
+- import_playbook: playbooks/admin_tools.yml 
 - import_playbook: playbooks/backups.yml 
+- import_playbook: playbooks/cuda.yml
 - import_playbook: playbooks/containerization.yml 
-- import_playbook: playbooks/core_development_tools.yml 
-- import_playbook: playbooks/system_services.yml 
 - import_playbook: playbooks/nfs_server.yml 
 - import_playbook: playbooks/nfs_client.yml 
 - import_playbook: playbooks/ldap_client.yml 
 - import_playbook: playbooks/customize_motd.yml 
+- import_playbook: playbooks/system_services.yml 

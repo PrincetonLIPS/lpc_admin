@@ -5,7 +5,7 @@
   remote_user: "{{ admin }}" 
   vars_files: 
     - ../variables/identity.yml
-    - ../variables/administration.yml
+    - ../variables/admin_tools.yml
 
   tasks: 
   - name: ensure administration tools are present

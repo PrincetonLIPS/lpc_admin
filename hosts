@@ -19,15 +19,5 @@ yubaba ansible_host=172.17.0.102 ansible_user=njkr
 zeneba ansible_host=172.17.0.112 ansible_user=njkr
 kamaji ansible_host=172.17.0.115 ansible_user=njkr
 
-# GPU configuration 
-[gpu_latest]
-kamaji ansible_host=172.17.0.115 ansible_user=njkr
-
-[gpu_one_back]
-zeneba ansible_host=172.17.0.112 ansible_user=njkr
-
-[gpu_two_back]
-yubaba ansible_host=172.17.0.102 ansible_user=njkr
-
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
