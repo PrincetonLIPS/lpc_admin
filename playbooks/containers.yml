@@ -19,3 +19,11 @@
         name: docker-ce
         update_cache: yes
         state: present
+    - name: Pull default images 
+      community.docker.docker_image: 
+        name: "{{ item }}" 
+        source: pull 
+        state: present 
+        tag: latest 
+      loop: "{{ default_images }}" 
+      

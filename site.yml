@@ -3,7 +3,7 @@
 - import_playbook: playbooks/admin_tools.yml 
 - import_playbook: playbooks/backups.yml 
 - import_playbook: playbooks/cuda.yml
-- import_playbook: playbooks/containerization.yml 
+- import_playbook: playbooks/containers.yml 
 - import_playbook: playbooks/nfs_server.yml 
 - import_playbook: playbooks/nfs_client.yml 
 - import_playbook: playbooks/ldap_client.yml 

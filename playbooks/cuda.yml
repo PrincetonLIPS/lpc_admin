@@ -28,3 +28,17 @@
         name: "cuda={{ latest_toolkit }}"
         update_cache: yes
         state: present
+    - name: Install container toolkit
+      ansible.builtin.apt: 
+          name: "{{ item }}"
+          state: present
+          update_cache: yes
+      loop: "{{ container_toolkit_dependencies }}"
+      notify: 
+        - restart docker
+
+  handlers: 
+    - name: restart docker
+      ansible.builtin.service: 
+        name: docker
+        state: restarted 

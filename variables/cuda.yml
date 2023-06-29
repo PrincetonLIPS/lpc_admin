@@ -3,3 +3,6 @@ gpg_key_path: "/usr/share/keyrings/cuda-archive-keyring.gpg"
 repository_url: "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/"
 latest_driver: 535
 latest_toolkit: "12.2.0-1"
+container_toolkit_dependencies: 
+    - "nvidia-container-toolkit" 
+    - "nvidia-docker2" 
