@@ -1,3 +1,8 @@
 ---
 admin_tools: 
     - logwatch 
+    - mailutils 
+    - ssmtp
+logwatch_conf_path: "/etc/logwatch/conf/logwatch.conf"
+logwatch_html_path: "/usr/share/logwatch/default.conf/html/header.html"
+ssmtp_conf_path: "/etc/ssmtp/ssmtp.conf"

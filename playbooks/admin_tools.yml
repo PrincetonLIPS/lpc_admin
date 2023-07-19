@@ -21,6 +21,41 @@
       update_cache: yes 
     notify: 
         - restart cockpit 
+  - name: transfer logwatch config
+    ansible.builtin.copy:
+      src: ../files/logwatch.conf
+      dest: "{{ logwatch_conf_path }}"
+      owner: root 
+      group: root 
+      mode: '0644'
+      backup: true 
+  - name: Create logwatch directory
+    ansible.builtin.file:
+      path: /var/cache/logwatch
+      state: directory
+      mode: '0755'
+  - name: transfer logwatch html format 
+    ansible.builtin.copy:
+      src: ../files/header.html
+      dest: "{{ logwatch_html_path }}"
+      owner: root 
+      group: root 
+      mode: '0644'
+      backup: true 
+  - name: add logwatch cron job 
+    ansible.builtin.cron: 
+      name: "logwatch emails" 
+      minute: "0"
+      hour: "17" 
+      job: "logwatch --detail Low --range today"
+  - name: transfer mail server configuration
+    ansible.builtin.copy:
+      src: ../files/ssmtp.conf
+      dest: "{{ ssmtp_conf_path }}"
+      owner: root 
+      group: root 
+      mode: '0640'
+      backup: true 
 
   handlers: 
     - name: restart cockpit
