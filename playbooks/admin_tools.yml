@@ -56,6 +56,9 @@
       group: root 
       mode: '0640'
       backup: true 
+  - name: Set timezone to EDT
+    community.general.timezone:
+      name: America/New_York
 
   handlers: 
     - name: restart cockpit
