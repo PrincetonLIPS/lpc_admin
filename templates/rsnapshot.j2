@@ -84,6 +84,7 @@ cmd_logger	/usr/bin/logger
 # e.g. alpha, beta, gamma, etc.         #
 #########################################
 
+retain	daily	{{ num_daily_backups }}
 retain	weekly	{{ num_weekly_backups }}
 retain	monthly	{{ num_monthly_backups }}
 
