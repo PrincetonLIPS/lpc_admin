@@ -13,15 +13,39 @@
         state: present
     - name: Create mount points 
       ansible.builtin.file: 
-        path: "{{ nfs_mount_path }}"
+        path: "{{ item }}"
+        state: directory
         owner: root
         group: root
         mode: '0755'
-    - name: Mount remote 
+      loop: "{{ client_mount_paths }}" 
+    - name: Mount remote home
       ansible.posix.mount: 
         src: "{{ nfs_server_ip }}:/home"
-        path: "{{ nfs_mount_path }}" 
+        path: /nfs/home
         opts: rw,sync,hard 
         state: mounted 
         fstype: nfs 
-        boot: true 
+        boot: true
+    - name: Mount remote backup volume
+      ansible.posix.mount: 
+        src: "{{ nfs_server_ip }}:/mnt/sda/rsnapshot/{{ ansible_hostname }}"
+        path: /nfs/backups
+        opts: rw,sync,hard 
+        state: mounted 
+        fstype: nfs 
+        boot: true
+    - name: Create a location to soft link the remote backup
+      ansible.builtin.file: 
+        path: /mnt/sda/rsnapshot
+        state: directory 
+        owner: root 
+        group: root 
+        mode: '0755'
+    - name: Soft link backup volume 
+      ansible.builtin.file: 
+        src: /nfs/backups
+        dest: "/mnt/sda/rsnapshot/{{ ansible_hostname }}"
+        state: link 
+        owner: root 
+        group: root 
