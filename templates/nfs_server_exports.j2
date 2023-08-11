@@ -1,3 +1,4 @@
-{% for client_ip in nfs_client_ips %} 
-/home {{ client_ip }}(rw,sync,no_root_squash,no_subtree_check)
-{% endfor %} 
+{% for client in client_configs %}
+/home {{ client['ip'] }}(rw,sync,no_root_squash,no_subtree_check)
+/mnt/sda/rsnapshot/{{ client['hostname'] }} {{ client['ip'] }}(rw,sync,no_root_squash,no_subtree_check)
+{% endfor %}
