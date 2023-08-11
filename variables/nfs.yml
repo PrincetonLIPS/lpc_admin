@@ -3,5 +3,14 @@ nfs_server_ip: 172.17.0.102
 nfs_client_ips: 
     - 172.17.0.112
     - 172.17.0.115
-nfs_mount_path: /nfs/home 
+client_configs: 
+    - ip: 172.17.0.112
+      hostname: zeneba
+    - ip: 172.17.0.115
+      hostname: kamaji
+
+client_mount_paths: 
+  - /nfs/home
+  - /nfs/backups
+
 nfs_port: 2049 
