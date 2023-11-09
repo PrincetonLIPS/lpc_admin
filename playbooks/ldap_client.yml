@@ -36,7 +36,7 @@
   - name: template ldap configuration 
     ansible.builtin.template: 
         src: ../templates/ldap.j2
-        dest: /etc/ldap.conf
+        dest: /etc/ldap/ldap.conf
         owner: root 
         group: root 
         mode: '0644'
