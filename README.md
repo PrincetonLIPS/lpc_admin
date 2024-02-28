@@ -1,3 +1,10 @@
+![Kamaji GPU](https://healthchecks.io/b/2/8ec56db3-8ed9-451d-8ef4-41cbd684a33f.svg)
+![Kamaji Uptime](https://healthchecks.io/b/2/8fd677f1-727d-44ce-bbfb-5bc1e523b56a.svg)
+![Yubaba GPU](https://healthchecks.io/b/2/5732116b-b11b-4aad-a3bb-d62686bdacf0.svg)
+![Yubaba Uptime](https://healthchecks.io/b/2/098e2288-4279-4953-a981-dd0ef760bbc2.svg)
+![Zeneba GPU](https://healthchecks.io/b/2/aae54f51-80dd-459b-bd83-bd62700254d0.svg)
+![Zeneba Uptime](https://healthchecks.io/b/2/084e72ba-11b8-4011-af32-7bcb5dc53e35.svg)
+
 # LIPS Private Compute Configuration Management
 
 ## Background
