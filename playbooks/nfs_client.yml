@@ -27,6 +27,14 @@
         state: mounted 
         fstype: nfs 
         boot: true
+    - name: Mount shared storage
+      ansible.posix.mount: 
+        src: "{{ nfs_server_ip }}:/var/nfs/shared"
+        path: /nfs/shared
+        opts: rw,sync,hard 
+        state: mounted 
+        fstype: nfs 
+        boot: true
     - name: Mount remote backup volume
       ansible.posix.mount: 
         src: "{{ nfs_server_ip }}:/mnt/sda/rsnapshot/{{ ansible_hostname }}"

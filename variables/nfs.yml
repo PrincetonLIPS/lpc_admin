@@ -12,5 +12,6 @@ client_configs:
 client_mount_paths: 
   - /nfs/home
   - /nfs/backups
+  - /nfs/shared
 
 nfs_port: 2049 

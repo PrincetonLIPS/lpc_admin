@@ -1,4 +1,5 @@
 {% for client in client_configs %}
 /home {{ client['ip'] }}(rw,sync,no_root_squash,no_subtree_check)
+/var/nfs/shared {{ client['ip'] }}(rw,sync,no_subtree_check)
 /mnt/sda/rsnapshot/{{ client['hostname'] }} {{ client['ip'] }}(rw,sync,no_root_squash,no_subtree_check)
 {% endfor %}
