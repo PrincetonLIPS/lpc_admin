@@ -6,6 +6,7 @@ core_development_tools:
   - ca-certificates
   - curl 
   - duf 
+  - emacs
   - gcc 
   - git 
   - manpages-dev 
