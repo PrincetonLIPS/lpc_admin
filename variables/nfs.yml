@@ -1,5 +1,6 @@
 ---
 nfs_server_ip: 172.17.0.102 
+nfs_server_hostname: yubaba
 nfs_client_ips: 
     - 172.17.0.112
     - 172.17.0.115

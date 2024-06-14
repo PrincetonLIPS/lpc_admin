@@ -1,5 +1,6 @@
 # Cron task configuration for rsnapshot 
 # Author: njkrichardson@princeton.edu 
+MAILTO="{{ admin_email }}"
 
  {{ daily_backup_minute }}  {{ daily_backup_hour }} * * *		root	/usr/bin/rsnapshot daily
  {{ weekly_backup_minute }}  {{ weekly_backup_hour }} * * {{ weekly_backup_day }}		root	/usr/bin/rsnapshot weekly 

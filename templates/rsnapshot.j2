@@ -14,47 +14,30 @@ config_version	1.2
 ###########################
 # SNAPSHOT ROOT DIRECTORY #
 ###########################
-snapshot_root	/mnt/sda/rsnapshot/{{ ansible_hostname }}
+snapshot_root	/nfs/backups
 
-# If no_create_root is enabled, rsnapshot will not automatically create the
-# snapshot_root directory. This is particularly useful if you are backing
-# up to removable media, such as a FireWire or USB drive.
-#
-#no_create_root	1
+# we're backing up to an external drive (over an NFS share on some hosts) so 
+# we don't want rsnapshot to attempt to create the above root directory
+no_create_root	1
 
 #################################
 # EXTERNAL PROGRAM DEPENDENCIES #
 #################################
 
-# LINUX USERS:   Be sure to uncomment "cmd_cp". This gives you extra features.
-# EVERYONE ELSE: Leave "cmd_cp" commented out for compatibility.
-#
 # See the README file or the man page for more details.
-#
 cmd_cp		/bin/cp
-
-# uncomment this to use the rm program instead of the built-in perl routine.
-#
 cmd_rm		/bin/rm
-
-# rsync must be enabled for anything to work. This is the only command that
-# must be enabled.
-#
-cmd_rsync	/usr/bin/rsync
-
+# REQUIRED
+cmd_rsync	/usr/bin/rsync 
 # Uncomment this to enable remote ssh backups over rsync.
 #
 #cmd_ssh	/usr/bin/ssh
 
-# Comment this out to disable syslog support.
-#
+# logging 
 cmd_logger	/usr/bin/logger
 
-# Uncomment this to specify the path to "du" for disk usage checks.
-# If you have an older version of "du", you may also want to check the
-# "du_args" parameter below.
-#
-#cmd_du		/usr/bin/du
+# disk usage 
+cmd_du		/usr/bin/du
 
 # Uncomment this to specify the path to rsnapshot-diff.
 #
@@ -106,7 +89,7 @@ verbose		2
 # logfile, if one is being used. The default is 3.
 # If you want the rsync output, you have to set it to 4
 #
-loglevel	3
+loglevel	4
 
 # If you enable this, data will be written to the file you specify. The
 # amount of data written is controlled by the "loglevel" parameter.
@@ -139,7 +122,7 @@ lockfile	/var/run/rsnapshot.pid
 # The GNU version of "du" is preferred. See the man page for more details.
 # If your version of "du" doesn't support the -h flag, try -k flag instead.
 #
-#du_args	-csh
+du_args	-csh
 
 # If this is enabled, rsync won't span filesystem partitions within a
 # backup point. This essentially passes the -x option to rsync.
@@ -220,8 +203,8 @@ lockfile	/var/run/rsnapshot.pid
 backup	/home/		localhost/
 backup	/etc/		localhost/
 backup	/usr/local/	localhost/
+backup	/var/log/rsnapshot.log		localhost/
 
-#backup	/var/log/rsnapshot		localhost/
 #backup	/etc/passwd	localhost/
 #backup	/home/foo/My Documents/		localhost/
 #backup	/foo/bar/	localhost/	one_fs=1,rsync_short_args=-urltvpog
