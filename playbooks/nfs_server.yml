@@ -12,6 +12,21 @@
         name: nfs-kernel-server
         update_cache: yes
         state: present
+    - name: Create soft link source for backups 
+      ansible.builtin.file: 
+        path: /nfs
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+    - name: Create soft link for backups 
+      ansible.builtin.file: 
+        src: "/mnt/sda/rsnapshot/{{ nfs_server_hostname }}"
+        dest: /nfs/backups
+        state: link
+        owner: root
+        group: root
+        mode: '0755'
     - name: Template out server configuration 
       ansible.builtin.template:
         src: ../templates/nfs_server_exports.j2
